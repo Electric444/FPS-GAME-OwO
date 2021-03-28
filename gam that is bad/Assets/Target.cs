@@ -10,6 +10,11 @@ public class Target : MonoBehaviour
     
     public void TakeDamage (float amount)
     {
+        if (this.gameObject.transform.tag == "Enemy")
+        {
+            if (!this.gameObject.GetComponent<FollowPlayer>().shot)
+                this.gameObject.GetComponent<FollowPlayer>().shot = true;
+        }
         health -= amount;
         healthBar.fillAmount = health;
         if(health <= 0f)
